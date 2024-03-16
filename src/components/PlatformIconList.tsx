@@ -17,21 +17,21 @@ interface Props {
   platforms: Platform[];
 }
 const PlatformIconList = ({ platforms }: Props) => {
-    const iconMap : { [key: string]: IconType} = {
-        pc: FaWindows,
-        playstation: FaPlaystation,
-        xbox: FaXbox,
-        linux: FaLinux,
-        nintendo: SiNintendo,
-        mac: FaApple,
-        android: FaAndroid,
-        ios: MdPhoneIphone,
-        web: BsGlobe
-    }
+  const iconMap: { [key: string]: IconType } = {
+    pc: FaWindows,
+    playstation: FaPlaystation,
+    xbox: FaXbox,
+    linux: FaLinux,
+    nintendo: SiNintendo,
+    mac: FaApple,
+    android: FaAndroid,
+    ios: MdPhoneIphone,
+    web: BsGlobe,
+  };
   return (
-    <HStack marginY={'10px'}>
+    <HStack marginY={"10px"}>
       {platforms.map((platform) => (
-        <Icon as={iconMap[platform.slug]} color='gray.500'/>
+        <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
       ))}
     </HStack>
   );
