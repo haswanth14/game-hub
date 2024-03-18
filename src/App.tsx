@@ -9,6 +9,7 @@ import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
+import { MDBFooter } from "mdb-react-ui-kit"; // Import MDBFooter
 
 export interface GameQuery {
   genre: Genre | null;
@@ -47,25 +48,37 @@ function App() {
       </Show>
       <GridItem area="main">
         <Box paddingLeft={2}>
-        <GameHeading gameQuery={gameQuery}/>
-        <Flex marginBottom={4}>
-          <Box marginRight={5}>
-            <PlatformSelector
-              selectedPlatform={gameQuery.platform}
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
+          <GameHeading gameQuery={gameQuery} />
+          <Flex marginBottom={4}>
+            <Box marginRight={5}>
+              <PlatformSelector
+                selectedPlatform={gameQuery.platform}
+                onSelectPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, platform })
+                }
+              />
+            </Box>
+            <SortSelector
+              sortOrder={gameQuery.sortOrder}
+              onSelectSortorder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
               }
             />
-          </Box>
-          <SortSelector
-            sortOrder={gameQuery.sortOrder}
-            onSelectSortorder={(sortOrder) =>
-              setGameQuery({ ...gameQuery, sortOrder })
-            }
-          />
-        </Flex>
+          </Flex>
         </Box>
         <GameGrid gameQuery={gameQuery} />
+        <MDBFooter className="text-center text-lg-left">
+          <div className="text-center p-3">
+            &copy; {new Date().getFullYear()} Copyright:{" "}
+            <a
+              className="text-dark"
+              href="https://haswanth.vercel.app/"
+              style={{ fontSize: "1.2em" }}
+            >
+              Haswanth
+            </a>
+          </div>
+        </MDBFooter>
       </GridItem>
     </Grid>
   );
